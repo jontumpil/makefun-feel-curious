@@ -14,10 +14,18 @@ TEXT = (
 )
 
 
-def main() -> None:
+def write_entry(text: str) -> None:
+    if not 1 <= len(text) <= 280:
+        raise SystemExit(
+            "entry must be 1-280 characters, got %d" % len(text)
+        )
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(TEXT)
+        f.write(text)
+
+
+def main() -> None:
+    write_entry(TEXT)
 
 
 if __name__ == "__main__":
